@@ -1,5 +1,23 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\46c3866d-cbfc-4290-96dd-d08948d6c531.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Loan_System</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Loan_System</BasePath>
+      <RelativePath>uploads/contracts/46c3866d-cbfc-4290-96dd-d08948d6c531.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>dw6iju0ok5</Fingerprint>
+      <Integrity>k+Gelw2Gsg+YvtScD9Qyp3HhXj5cgiX8rVLnC0El4l8=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\46c3866d-cbfc-4290-96dd-d08948d6c531.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\4d97aed7-e3fd-4f28-8a8d-81ec009e7c98.png'))">
       <SourceType>Package</SourceType>
       <SourceId>Loan_System</SourceId>
@@ -53,6 +71,60 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\b12db548-efe4-4538-9815-54fa1de938e0.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\d040117e-8466-4274-87d9-136ff36a95e9.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Loan_System</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Loan_System</BasePath>
+      <RelativePath>uploads/contracts/d040117e-8466-4274-87d9-136ff36a95e9.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>dw6iju0ok5</Fingerprint>
+      <Integrity>k+Gelw2Gsg+YvtScD9Qyp3HhXj5cgiX8rVLnC0El4l8=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\d040117e-8466-4274-87d9-136ff36a95e9.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\e4aafb7f-049b-4a4c-9b90-99a6773bea3d.pdf'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Loan_System</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Loan_System</BasePath>
+      <RelativePath>uploads/contracts/e4aafb7f-049b-4a4c-9b90-99a6773bea3d.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>eujnng09sk</Fingerprint>
+      <Integrity>Nrsk06f3oq9xUl8eCDghqERcJyId9CY127CLwVFDxkI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\e4aafb7f-049b-4a4c-9b90-99a6773bea3d.pdf'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\f662a644-59fd-41d0-88b4-c7746ca3bb8e.xlsx'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Loan_System</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Loan_System</BasePath>
+      <RelativePath>uploads/contracts/f662a644-59fd-41d0-88b4-c7746ca3bb8e.xlsx</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>59xvb7yp1w</Fingerprint>
+      <Integrity>GYHAh2HMMwBXHpj9B5SJ2o7QH8C1DYhs6hCobON6TAw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\f662a644-59fd-41d0-88b4-c7746ca3bb8e.xlsx'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\contracts\f89b47f6-5d82-44e0-9204-ea948e1dc0a7.jpg'))">
       <SourceType>Package</SourceType>

@@ -37,11 +37,11 @@ public class ContractCreateDto
     [Precision(18, 2)]
     public decimal? OperationLoanCost { get; set; }
     [Precision(18, 2)]
-    public decimal? CashPaid { get; set; }
+    public List<CashPaidPaymentsDto> CashPaidPayments { get; set; } = new();
     [Precision(18, 2)]
     public decimal? TaxesAndBlockedmoney { get; set; }
     [Precision(18, 2)]
-    public decimal? PrivateMoneyPaid { get; set; }
+    public List<PrivateMoneyPaymentsDTO> PrivateMoneyPaid { get; set; } = new();
 
     // Additional Info
     public string Notes { get; set; } = string.Empty;

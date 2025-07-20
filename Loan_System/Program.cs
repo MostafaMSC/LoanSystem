@@ -31,7 +31,6 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddDefaultTokenProviders();
 builder.Services.AddScoped<IConract, ContractService>();
 
-// ✅ Cookie Redirect Handling (Moved Up)
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Events.OnRedirectToLogin = context =>
@@ -77,7 +76,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// builder.Services.AddSingleton<SemanticKernelService>();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -89,7 +87,6 @@ builder.Services.Configure<IdentityOptions>(options =>
     
 });
 
-// ✅ Swagger with JWT support
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Loan System API", Version = "v1" });
@@ -120,7 +117,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// ✅ Enable CORS for React App
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
@@ -138,7 +134,6 @@ builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-// ✅ Seed roles and admin user
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -147,7 +142,6 @@ using (var scope = app.Services.CreateScope())
     await IdentitySeeder.SeedAdminAsync(userManager);
 }
 
-// ✅ Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -158,9 +152,9 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseCors("AllowReactApp"); // ✅ use named policy
+app.UseCors("AllowReactApp");
 
-app.UseAuthentication(); // 👈 must come before Authorization
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();

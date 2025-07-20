@@ -1,6 +1,7 @@
     // Models/LoginRequest.cs
     using System.ComponentModel.DataAnnotations;
-    using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
     namespace Loan_System.Modules
     {
@@ -38,12 +39,14 @@
         public decimal? TotalCostPaid { get; set; }
         [Precision(18, 2)]
         public decimal? OperationLoanCost { get; set; }
+        
+        // Navigation: One contract can have many payments
         [Precision(18, 2)]
-        public decimal? CashPaid { get; set; }
+        public ICollection<CashPaidPayments> CashPaid { get; set; } = new List<CashPaidPayments>();
         [Precision(18, 2)]
         public decimal? TaxesAndBlockedmoney { get; set; }
         [Precision(18, 2)]
-        public decimal? PrivateMoneyPaid { get; set; }
+        public ICollection<PrivateMoneyPayments> PrivateMoneyPaid { get; set; } = new List<PrivateMoneyPayments>();
 
         // Additional Info
         public string? Notes { get; set; } = string.Empty;

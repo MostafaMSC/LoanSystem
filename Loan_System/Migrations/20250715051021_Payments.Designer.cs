@@ -4,6 +4,7 @@ using Loan_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Loan_System.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250715051021_Payments")]
+    partial class Payments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -353,6 +356,10 @@ namespace Loan_System.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal?>("PrivateMoneyPaid")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -619,30 +626,6 @@ namespace Loan_System.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PrivateMoneyPayments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ContractId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContractId");
-
-                    b.ToTable("PrivateMoneyPayments");
-                });
-
             modelBuilder.Entity("RefreshToken", b =>
                 {
                     b.Property<int>("Id")
@@ -820,17 +803,6 @@ namespace Loan_System.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PrivateMoneyPayments", b =>
-                {
-                    b.HasOne("Loan_System.Modules.ContractsModule", "Contract")
-                        .WithMany("PrivateMoneyPaid")
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Contract");
-                });
-
             modelBuilder.Entity("RefreshToken", b =>
                 {
                     b.HasOne("Loan_System.Modules.ApplicationUser", "User")
@@ -852,8 +824,6 @@ namespace Loan_System.Migrations
                     b.Navigation("CashPaid");
 
                     b.Navigation("Documents");
-
-                    b.Navigation("PrivateMoneyPaid");
                 });
 #pragma warning restore 612, 618
         }

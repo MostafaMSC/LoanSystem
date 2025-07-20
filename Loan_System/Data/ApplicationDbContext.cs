@@ -27,6 +27,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
         public DbSet<DepartmentModule> DepartmentTable { get; set; }
         public DbSet<BudgetRevenue> BudgetRevenueTable { get; set; } // Added missing DbSet
         public DbSet<ContractDocument> ContractDocuments { get; set; }
+        public DbSet<CashPaidPayments> CashPaidPayments { get; set; }
+        public DbSet<PrivateMoneyPayments> PrivateMoneyPayments { get; set; }
+
+
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

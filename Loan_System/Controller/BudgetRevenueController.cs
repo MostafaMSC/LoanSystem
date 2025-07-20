@@ -84,12 +84,6 @@ public class BudgetRevenueController : ControllerBase
                 validationErrors.Add($"Department too long. Max 255 chars, received: {model.Department.Length}");
             }
 
-            // Check RevenueCost
-            _logger.LogDebug("Checking RevenueCost: {RevenueCost}", model.RevenueCost);
-            if (model.RevenueCost < 0)
-            {
-                validationErrors.Add($"RevenueCost must be >= 0. Received: {model.RevenueCost}");
-            }
 
             // Check Year (if required)
             _logger.LogDebug("Checking Year: {Year}", model.Year);
@@ -149,6 +143,31 @@ public class BudgetRevenueController : ControllerBase
 
             // If your Entity base class has CreatedAt/UpdatedAt, set them
             // model.CreatedAt = DateTime.Now; // Uncomment if needed
+// Check for duplicates
+var isDuplicate = await _context.BudgetRevenueTable.AnyAsync(x =>
+    x.RevenueId == model.RevenueId &&
+    x.Department == model.Department &&
+    x.Month == model.Month &&
+    x.Year == model.Year);
+
+if (isDuplicate)
+{
+    _logger.LogWarning("Duplicate entry detected for RevenueId {RevenueId}, Department {Department}, Month {Month}, Year {Year}",
+        model.RevenueId, model.Department, model.Month, model.Year);
+
+    return BadRequest(new
+    {
+        Message = "لا يمكن إدخال نفس الإيراد لنفس القسم في نفس الشهر والسنة مرتين.",
+        Error = "Duplicate entry",
+        Data = new
+        {
+            model.RevenueId,
+            model.Department,
+            model.Month,
+            model.Year
+        }
+    });
+}
 
             // Try to save to database
             _logger.LogInformation("Attempting to save to database...");
@@ -358,7 +377,7 @@ public class BudgetRevenueController : ControllerBase
             var totalCount = await _context.BudgetRevenueTable.CountAsync();
 
             var revenues = await _context.BudgetRevenueTable
-                .OrderByDescending(l => l.CreatedAt)
+                .OrderBy(l => l.CreatedAt)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -444,6 +463,56 @@ public class BudgetRevenueController : ControllerBase
         return Ok("Revenue deleted successfully.");
     }
 
+
+
+[HttpGet("GetReportForward")]
+public async Task<IActionResult> GetReportForward(int year, int month, string? department)
+{
+    try
+    {
+        var query = _context.BudgetRevenueTable
+            .Where(br => br.Year == year && br.Month < month);
+
+        if (!string.IsNullOrWhiteSpace(department))
+        {
+            query = query.Where(br => br.Department == department);
+            _logger.LogInformation("Fetching carried forward per department for: {Department}, Year: {Year}, Until Month: {Month}",
+                department, year, month);
+        }
+        else
+        {
+            _logger.LogInformation("Fetching carried forward per department for all departments, Year: {Year}, Until Month: {Month}",
+                year, month);
+        }
+
+        var carriedForwardByDept = await query
+            .GroupBy(br => br.Department)
+            .Select(g => new
+            {
+                Department = g.Key,
+                CarriedForwardTotal = g.Sum(br => br.RevenueCost)
+            })
+            .ToListAsync();
+
+        return Ok(carriedForwardByDept);
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Error fetching carried forward totals. Department: {Department}, Year: {Year}, Month: {Month}",
+            department, year, month);
+
+        return StatusCode(500, new
+        {
+            Message = "خطأ في جلب المدور لكل قسم",
+            Error = ex.Message
+        });
+    }
+}
+
+
+
+
+
     [HttpGet("GetReportByDateAndDep")]
     public async Task<IActionResult> GetRevenueReport(int year, int month, string? department)
 {
@@ -465,7 +534,7 @@ public class BudgetRevenueController : ControllerBase
                 year, month);
         }
 
-        var reports = await query.OrderBy(br => br.RecordedDate).ToListAsync();
+        var reports = await query.OrderBy(br => br.RevenueId).ToListAsync();
 
         _logger.LogInformation("Found {Count} revenue records", reports.Count);
 

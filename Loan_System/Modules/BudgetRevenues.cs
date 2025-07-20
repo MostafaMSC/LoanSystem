@@ -18,7 +18,6 @@
         [Range(0, double.MaxValue, ErrorMessage = "Revenue cost must be positive")]
         public decimal RevenueCost { get; set; } // Changed to decimal for currency
         
-        // Additional fields that might be useful based on your report
         public int? Year { get; set; }
         public int? Month { get; set; }
         public DateTime? RecordedDate { get; set; }

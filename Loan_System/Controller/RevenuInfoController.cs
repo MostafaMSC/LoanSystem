@@ -19,6 +19,7 @@ public class RevenuInfoController : ControllerBase
     [HttpPost("AddRevenue")]
     public async Task<IActionResult> AddNewRevenue([FromBody] RevenueInfoModule revenuInfo)
     {
+        
         await _context.RevenueInfoTable.AddAsync(revenuInfo);
         await _context.SaveChangesAsync();
         return Ok("revenue added successfully.");
@@ -30,8 +31,7 @@ public class RevenuInfoController : ControllerBase
         var totalCount = await _context.RevenueInfoTable.CountAsync();
 
         var loans = await _context.RevenueInfoTable
-            .OrderBy(l => l.CreatedAt) // أو .OrderBy(l => l.Id) حسب الحاجة
-
+            
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
