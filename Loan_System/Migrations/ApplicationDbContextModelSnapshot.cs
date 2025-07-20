@@ -106,30 +106,6 @@ namespace Loan_System.Migrations
                     b.ToTable("BudgetRevenues", (string)null);
                 });
 
-            modelBuilder.Entity("CashPaidPayments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ContractId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContractId");
-
-                    b.ToTable("CashPaidPayments");
-                });
-
             modelBuilder.Entity("Customizeannual", b =>
                 {
                     b.Property<int>("Id")
@@ -292,6 +268,10 @@ namespace Loan_System.Migrations
                     b.Property<int?>("AddedDays")
                         .HasColumnType("int");
 
+                    b.Property<decimal?>("CashPaid")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -350,6 +330,10 @@ namespace Loan_System.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("OperationLoanCost")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("PrivateMoneyPaid")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
@@ -619,30 +603,6 @@ namespace Loan_System.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PrivateMoneyPayments", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ContractId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContractId");
-
-                    b.ToTable("PrivateMoneyPayments");
-                });
-
             modelBuilder.Entity("RefreshToken", b =>
                 {
                     b.Property<int>("Id")
@@ -732,17 +692,6 @@ namespace Loan_System.Migrations
                     b.Navigation("RevenueInfo");
                 });
 
-            modelBuilder.Entity("CashPaidPayments", b =>
-                {
-                    b.HasOne("Loan_System.Modules.ContractsModule", "Contract")
-                        .WithMany("CashPaid")
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Contract");
-                });
-
             modelBuilder.Entity("Loan_System.Modules.ContractDocument", b =>
                 {
                     b.HasOne("Loan_System.Modules.ContractsModule", "Contract")
@@ -820,17 +769,6 @@ namespace Loan_System.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PrivateMoneyPayments", b =>
-                {
-                    b.HasOne("Loan_System.Modules.ContractsModule", "Contract")
-                        .WithMany("PrivateMoneyPaid")
-                        .HasForeignKey("ContractId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Contract");
-                });
-
             modelBuilder.Entity("RefreshToken", b =>
                 {
                     b.HasOne("Loan_System.Modules.ApplicationUser", "User")
@@ -849,11 +787,7 @@ namespace Loan_System.Migrations
 
             modelBuilder.Entity("Loan_System.Modules.ContractsModule", b =>
                 {
-                    b.Navigation("CashPaid");
-
                     b.Navigation("Documents");
-
-                    b.Navigation("PrivateMoneyPaid");
                 });
 #pragma warning restore 612, 618
         }

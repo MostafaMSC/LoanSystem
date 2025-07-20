@@ -1,10 +1,6 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\MSI\\Desktop\\LoanSystem\\loan_system\\wwwroot\\uploads\\contracts\\46c3866d-cbfc-4290-96dd-d08948d6c531.pdf",
-      "PackagePath": "staticwebassets\\uploads\\contracts\\46c3866d-cbfc-4290-96dd-d08948d6c531.pdf"
-    },
-    {
       "Id": "C:\\Users\\MSI\\Desktop\\LoanSystem\\loan_system\\wwwroot\\uploads\\contracts\\4d97aed7-e3fd-4f28-8a8d-81ec009e7c98.png",
       "PackagePath": "staticwebassets\\uploads\\contracts\\4d97aed7-e3fd-4f28-8a8d-81ec009e7c98.png"
     },
@@ -15,18 +11,6 @@
     {
       "Id": "C:\\Users\\MSI\\Desktop\\LoanSystem\\loan_system\\wwwroot\\uploads\\contracts\\b12db548-efe4-4538-9815-54fa1de938e0.png",
       "PackagePath": "staticwebassets\\uploads\\contracts\\b12db548-efe4-4538-9815-54fa1de938e0.png"
-    },
-    {
-      "Id": "C:\\Users\\MSI\\Desktop\\LoanSystem\\loan_system\\wwwroot\\uploads\\contracts\\d040117e-8466-4274-87d9-136ff36a95e9.pdf",
-      "PackagePath": "staticwebassets\\uploads\\contracts\\d040117e-8466-4274-87d9-136ff36a95e9.pdf"
-    },
-    {
-      "Id": "C:\\Users\\MSI\\Desktop\\LoanSystem\\loan_system\\wwwroot\\uploads\\contracts\\e4aafb7f-049b-4a4c-9b90-99a6773bea3d.pdf",
-      "PackagePath": "staticwebassets\\uploads\\contracts\\e4aafb7f-049b-4a4c-9b90-99a6773bea3d.pdf"
-    },
-    {
-      "Id": "C:\\Users\\MSI\\Desktop\\LoanSystem\\loan_system\\wwwroot\\uploads\\contracts\\f662a644-59fd-41d0-88b4-c7746ca3bb8e.xlsx",
-      "PackagePath": "staticwebassets\\uploads\\contracts\\f662a644-59fd-41d0-88b4-c7746ca3bb8e.xlsx"
     },
     {
       "Id": "C:\\Users\\MSI\\Desktop\\LoanSystem\\loan_system\\wwwroot\\uploads\\contracts\\f89b47f6-5d82-44e0-9204-ea948e1dc0a7.jpg",

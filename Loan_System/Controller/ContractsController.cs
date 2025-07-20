@@ -1,7 +1,10 @@
+using Loan_System.Modules;
 using Loan_System.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Loan_System.Services.Interface;
+
 [ApiController]
 [Route("[controller]")]
 public class ContractsController : ControllerBase
@@ -83,15 +86,7 @@ public class ContractsController : ControllerBase
             return NotFound(result);
         return Ok(result);
     }
-    [Authorize]
-    [HttpDelete("DeleteContractDocument/{id}")]
-    public async Task<IActionResult> DeleteContractDocument(int id)
-    {
-        var result = await _contractService.DeleteContractDocument(id);
-        if (result.Contains("not found"))
-            return NotFound(result);
-        return Ok(result);
-    }
+
 
 [Consumes("multipart/form-data")]
 [HttpPost("UploadContractDocuments")]
@@ -116,35 +111,8 @@ public async Task<IActionResult> GetDocumentsByContractId(int contractId)
 
     return Ok(new { documents = result });
 }
-[HttpGet("GetPaymentsByContractId/{contractId}")]
-public async Task<IActionResult> GetPaymentsByContractId(int contractId)
-{
-    var payments = await _contractService.GetPaymentsByContractId(contractId);
-    return Ok(payments);
-}
 
-    [HttpDelete("DeletePayment/{paymentId}")]
-    public async Task<IActionResult> DeletePayment(int paymentId)
-    {
-        var result = await _contractService.DeletePayment(paymentId);
-        if (result.Contains("not found"))
-            return NotFound(result);
-        return Ok(result);
-    }
 
-    [HttpGet("GetPrivatePaymentsByContractId/{contractId}")]
-    public async Task<IActionResult> GetPrivatePaymentsByContractId(int contractId)
-    {
-        var payments = await _contractService.GetPrivatePaymentsByContractId(contractId);
-        return Ok(payments);
-    }
-    
-    [HttpDelete("DeletePrivatePayment/{paymentId}")]
-    public async Task<IActionResult> DeletePrivatePayment(int paymentId)
-    {
-        var result = await _contractService.DeletePrivatePayment(paymentId);
-        if (result.Contains("not found"))
-            return NotFound(result);
-        return Ok(result);
-    }
+
+
 }

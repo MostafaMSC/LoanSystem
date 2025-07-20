@@ -10,12 +10,8 @@ public interface IConract
     Task<ContractsModule?> GetContractById(int id);
     Task<string> UpdateContract(int id, ContractCreateDto updatedContract);
     Task<string> DeleteContract(int id);
-    Task<string> DeleteContractDocument(int id);
     Task<string> UploadContractDocuments(ContractDocumentUploadDto dto);
     Task<List<ContractDocument>> GetDocumentsByContractId(int contractId);
-    Task<List<CashPaidPayments>> GetPaymentsByContractId(int contractId);
-    Task<string> DeletePayment(int PaymentId);
-    Task<List<PrivateMoneyPayments>> GetPrivatePaymentsByContractId(int contractId);
-    Task<string> DeletePrivatePayment(int PaymentId);
+
 
 }

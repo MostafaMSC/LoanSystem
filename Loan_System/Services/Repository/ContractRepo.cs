@@ -39,17 +39,9 @@ public class ContractService : IConract
                 CostToNatiBank = dto.CostToNatiBank,
                 TotalCostPaid = dto.TotalCostPaid,
                 OperationLoanCost = dto.OperationLoanCost,
-                CashPaid = dto.CashPaidPayments.Select(c => new CashPaidPayments
-                {
-                    Amount = c.Amount,
-                    PaymentDate = c.PaymentDate
-                }).ToList(),
+                CashPaid = dto.CashPaid,
                 TaxesAndBlockedmoney = dto.TaxesAndBlockedmoney,
-                PrivateMoneyPaid = dto.PrivateMoneyPaid.Select(p => new PrivateMoneyPayments
-                {
-                    Amount = p.Amount,
-                    PaymentDate = p.PaymentDate
-                }).ToList(),
+                PrivateMoneyPaid = dto.PrivateMoneyPaid,
                 Notes = dto.Notes,
             };
             contract.CalculateCostAfterChange();
@@ -100,11 +92,7 @@ public class ContractService : IConract
         contract.Notes = updatedContract.Notes;
         contract.AddedDays = updatedContract.AddedDays;
         contract.CompanyName = updatedContract.CompanyName;
-        contract.CashPaid = updatedContract.CashPaidPayments.Select(c => new CashPaidPayments
-        {
-            Amount = c.Amount,
-            PaymentDate = c.PaymentDate
-        }).ToList();
+        contract.CashPaid = updatedContract.CashPaid;
         contract.LoanId = updatedContract.LoanId;
         contract.CompleteDate = updatedContract.CompleteDate;
         contract.ContractAmount = updatedContract.ContractAmount;
@@ -119,11 +107,7 @@ public class ContractService : IConract
         contract.TotalCostPaid = updatedContract.TotalCostPaid;
         contract.OperationLoanCost = updatedContract.OperationLoanCost;
         contract.TaxesAndBlockedmoney = updatedContract.TaxesAndBlockedmoney;
-        contract.PrivateMoneyPaid = updatedContract.PrivateMoneyPaid.Select(p => new PrivateMoneyPayments
-        {
-            Amount = p.Amount,
-            PaymentDate = p.PaymentDate
-        }).ToList();
+        contract.PrivateMoneyPaid = updatedContract.PrivateMoneyPaid;
         contract.Notes = updatedContract.Notes;
         contract.Status = updatedContract.Status;
         contract.CalculateCostAfterChange();
@@ -174,52 +158,12 @@ public class ContractService : IConract
         return "Contract deleted successfully.";
     }
     public async Task<List<ContractDocument>> GetDocumentsByContractId(int contractId)
-    {
-        return await _context.ContractDocuments
-            .Where(d => d.ContractId == contractId)
-            .ToListAsync();
-    }
-
-    public async Task<string> DeleteContractDocument(int id)
-    {
-        var document = await _context.ContractDocuments.FindAsync(id);
-        if (document == null) return $"Document with ID {id} not found.";
-
-        _context.ContractDocuments.Remove(document);
-        await _context.SaveChangesAsync();
-        return "Document deleted successfully.";
-    }
-public async Task<List<CashPaidPayments>> GetPaymentsByContractId(int contractId)
 {
-    return await _context.CashPaidPayments
-        .Where(p => p.ContractId == contractId)
+    return await _context.ContractDocuments
+        .Where(d => d.ContractId == contractId)
         .ToListAsync();
 }
 
-    public async Task<string> DeletePayment(int PaymentId)
-    {
-        var payment = await _context.CashPaidPayments.FindAsync(PaymentId);
-        if (payment == null) return $"Payment with ID {PaymentId} not found.";
 
-        _context.CashPaidPayments.Remove(payment);
-        await _context.SaveChangesAsync();
-        return "Payment deleted successfully.";
-    }
-
-    public async Task<List<PrivateMoneyPayments>> GetPrivatePaymentsByContractId(int contractId)
-    {
-        return await _context.PrivateMoneyPayments
-            .Where(p => p.ContractId == contractId)
-            .ToListAsync();
-    }
-
-    public Task<string> DeletePrivatePayment(int PaymentId)
-    {
-    var payment = _context.PrivateMoneyPayments.Find(PaymentId);
-        if (payment == null) return Task.FromResult($"Payment with ID {PaymentId} not found.");
-
-        _context.PrivateMoneyPayments.Remove(payment);
-        _context.SaveChanges();
-        return Task.FromResult("Private payment deleted successfully.");
-    }
+    
 }
